@@ -35,7 +35,7 @@ def index():
     elif context =="":
       context_updated = prompt
     else:
-      context_updated = context + "\n"+ prompt
+      context_updated = context + "\n\n"+ prompt
     print('2.' + context_updated)
     response = openai.Completion.create(
         model="text-davinci-003",
@@ -45,7 +45,7 @@ def index():
         top_p=1,
         frequency_penalty=0,
         presence_penalty=0.6,
-        stop=["\n"]
+        #stop=["\n"]
     )
     print('3.' + response.choices[0].text)
     context += "\n".join([context, prompt, response.choices[0].text])
