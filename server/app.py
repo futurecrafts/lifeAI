@@ -29,10 +29,12 @@ def index():
     prompt = content['prompt']
     print(prompt)
     if need_to_reset_context(context):
-      context = ""
+      context_updated = prompt
+    else:
+      context_updated = context + "\n"+ prompt
     response = openai.Completion.create(
         model="text-davinci-003",
-        prompt=context + "\n\n"+ prompt,
+        prompt=context_updated,
         max_tokens=1000,
         temperature=0.9,
         top_p=1,
