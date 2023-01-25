@@ -25,7 +25,7 @@ def index():
     response = openai.Completion.create(
         model="text-davinci-003",
         prompt=context + "\n\n"+ prompt,
-        max_tokens=3000,
+        max_tokens=1000,
         temperature=0.9,
         top_p=1,
         frequency_penalty=0,
