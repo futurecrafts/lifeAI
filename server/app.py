@@ -45,7 +45,7 @@ def index():
         top_p=1,
         frequency_penalty=0,
         presence_penalty=0.6,
-        #stop=["\n"] maybe not used or bug
+        stop=["\n"]
     )
     print('3.' + response.choices[0].text)
     context += "\n".join([context, prompt, response.choices[0].text])
