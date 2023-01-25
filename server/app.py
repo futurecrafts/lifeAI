@@ -3,11 +3,15 @@ from flask_cors import CORS
 from dotenv import load_dotenv
 import os
 import openai
+import spacy
 
 load_dotenv()
 openai.api_key = os.getenv("OPEN_API_KEY")
 
 print(openai.api_key)
+
+from spacy.lang.en import English
+nlp = spacy.load("en_core_web_sm")
 
 app = Flask(__name__)
 CORS(app)
