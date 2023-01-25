@@ -24,4 +24,3 @@ tqdm==4.64.1
 urllib3==1.26.14
 Werkzeug==2.2.2
 yarl==1.8.2
-spacy==3.5.0
