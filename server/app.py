@@ -29,6 +29,7 @@ def index():
     prompt = content['prompt']
     print(prompt)
     if need_to_reset_context(context):
+      context = ""
       context_updated = prompt
     else:
       context_updated = context + "\n"+ prompt
