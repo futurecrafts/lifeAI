@@ -28,6 +28,8 @@ def index():
     content = request.json
     prompt = content['prompt']
     print(prompt)
+    if need_to_reset_context(context):
+      context = ""
     response = openai.Completion.create(
         model="text-davinci-003",
         prompt=context + "\n\n"+ prompt,
@@ -39,8 +41,6 @@ def index():
         #stop=["\n"] maybe not used or bug
     )
     print(response.choices[0].text + "\n")
-    if need_to_reset_context(context):
-      context = ""
     context += "\n".join([context, prompt, response.choices[0].text])
     return jsonify(bot = response.choices[0].text)
 
