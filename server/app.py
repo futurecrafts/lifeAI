@@ -3,30 +3,18 @@ from flask_cors import CORS
 from dotenv import load_dotenv
 import os
 import openai
-import spacy
 
 load_dotenv()
 openai.api_key = os.getenv("OPEN_API_KEY")
 
 print(openai.api_key)
 
-from spacy.lang.en import English
-nlp = spacy.load("en_core_web_sm")
-
 app = Flask(__name__)
 CORS(app)
 context = ""
 
 def need_to_reset_context(history):
-  chunks = [[]]
-  chunk_total_words = 0
-
-  sentences = nlp(history)
-
-  for sentence in sentences.sents:
-    chunk_total_words += len(sentence.text.split(" "))
-
-  if chunk_total_words > 2700:
+  if (len(history) > 15000): # 4097 token limit * 4 : 1 token = 4 chars in english
     return True    
   else:
     return False
