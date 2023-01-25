@@ -14,7 +14,7 @@ CORS(app)
 context = ""
 
 def need_to_reset_context(history):
-  if (len(history) > 15000): # 4097 token limit * 4 : 1 token = 4 chars in english
+  if (len(history) > 12000): # 4097 token limit * 4 : 1 token = 4 chars in english
     return True    
   else:
     return False
