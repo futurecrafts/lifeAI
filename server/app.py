@@ -13,6 +13,20 @@ app = Flask(__name__)
 CORS(app)
 context = ""
 
+def need_to_reset_context(history):
+  chunks = [[]]
+  chunk_total_words = 0
+
+  sentences = nlp(history)
+
+  for sentence in sentences.sents:
+    chunk_total_words += len(sentence.text.split(" "))
+
+  if chunk_total_words > 2700:
+    return True    
+  else:
+    return False
+
 @app.route("/", methods=['GET', 'POST'])
 def index():
   global context
@@ -33,6 +47,8 @@ def index():
         #stop=["\n"] maybe not used or bug
     )
     print(response.choices[0].text + "\n")
+    if need_to_reset_context(context):
+      context = ""
     context += "\n".join([context, prompt, response.choices[0].text])
     return jsonify(bot = response.choices[0].text)
 
