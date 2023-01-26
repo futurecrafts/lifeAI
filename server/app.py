@@ -14,7 +14,7 @@ CORS(app)
 context = ""
 
 def need_to_reset_context(history):
-  print(len(history))
+  #print(len(history))
   if (len(history) > 10000): # 4097 token limit(-1000 completion token) * 4 : 1 token = 4 chars in english
     return True    
   else:
@@ -24,19 +24,24 @@ def need_to_reset_context(history):
 def index():
   global context
   if request.method == 'GET':
+    context = ""
     return "Hello from AI!"
   else:
     content = request.json
     prompt = content['prompt']
-    print('1.' + prompt)
+    
+    if "\n" != prompt[-1]:
+      prompt = prompt + "\n"
+      
+    #print('1.' + prompt)
     if need_to_reset_context(context):
       context = ""
       context_updated = prompt
     elif context =="":
       context_updated = prompt
     else:
-      context_updated = context + "\n\n"+ prompt
-    print('2.' + context_updated)
+      context_updated = context + "\n"+ prompt
+    #print('2.' + context_updated)
     response = openai.Completion.create(
         model="text-davinci-003",
         prompt=context_updated,
@@ -47,8 +52,8 @@ def index():
         presence_penalty=0.6,
         #stop=["\n"]
     )
-    print('3.' + response.choices[0].text)
-    context += "\n".join([context, prompt, response.choices[0].text])
+    #print('3.' + response.choices[0].text)
+    context += "\n".join([context_updated, response.choices[0].text])
     print('4.' + context)
     return jsonify(bot = response.choices[0].text)
 
