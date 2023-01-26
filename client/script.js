@@ -75,6 +75,8 @@ const handleSubmit = async (e) => {
 
   loader(messageDiv);
 
+  const response0 = await fetch('https://lifeai.onrender.com')
+
   const response = await fetch('https://lifeai.onrender.com', {
     method: 'POST',
     headers: {
