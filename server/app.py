@@ -35,12 +35,16 @@ def index():
       
     print('prompt:' + prompt)
     if need_to_reset_context(context):
+      print('1 ')
       context = ""
       context_updated = prompt
     elif context =="":
+      print('2 ')
       context_updated = prompt
     else:
+      print('3 ')
       context_updated = context + "\n"+ prompt
+
     print('context_updated:' + context_updated)
     response = openai.Completion.create(
         model="text-davinci-003",
