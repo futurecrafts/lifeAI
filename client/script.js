@@ -6,7 +6,7 @@ const chatContainer = document.querySelector('#chat_container');
 
 let loadInterval;
 
-const response0 = await fetch('https://lifeai.onrender.com')
+//const response0 = await fetch('https://lifeai.onrender.com')
 
 function loader(element) {
   element.textContent = '';
