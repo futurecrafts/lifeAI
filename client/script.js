@@ -6,6 +6,8 @@ const chatContainer = document.querySelector('#chat_container');
 
 let loadInterval;
 
+const response0 = await fetch('https://lifeai.onrender.com')
+
 function loader(element) {
   element.textContent = '';
 
@@ -74,8 +76,6 @@ const handleSubmit = async (e) => {
   const messageDiv = document.getElementById(uniqueId);
 
   loader(messageDiv);
-
-  const response0 = await fetch('https://lifeai.onrender.com')
 
   const response = await fetch('https://lifeai.onrender.com', {
     method: 'POST',
