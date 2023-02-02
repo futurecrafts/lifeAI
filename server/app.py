@@ -33,6 +33,7 @@ def index():
     if "\n" != prompt[-1]:
       prompt = prompt + "\n"
       
+    print('context1:' + context)
     print('prompt:' + prompt)
     if need_to_reset_context(context):
       print('1 ')
