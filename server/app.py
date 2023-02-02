@@ -53,7 +53,7 @@ def index():
         #stop=["\n"]
     )
     #print('3.' + response.choices[0].text)
-    context += "\n".join([context_updated, response.choices[0].text])
+    context = "\n".join([context_updated, response.choices[0].text])
     print('4.' + context)
     return jsonify(bot = response.choices[0].text)
 
