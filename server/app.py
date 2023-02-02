@@ -25,7 +25,7 @@ def index():
   global context
   if request.method == 'GET':
     print('reset!')
-    context = ""
+    #context = ""
     return "Hello from AI!"
   else:
     content = request.json
