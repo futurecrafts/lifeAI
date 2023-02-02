@@ -44,7 +44,7 @@ def index():
     #print('2.' + context_updated)
     response = openai.Completion.create(
         model="text-davinci-003",
-        prompt=context_updated,
+        prompt=[context_updated],
         max_tokens=1000,
         temperature=0.9,
         top_p=1,
