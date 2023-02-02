@@ -24,6 +24,7 @@ def need_to_reset_context(history):
 def index():
   global context
   if request.method == 'GET':
+    print('reset!')
     context = ""
     return "Hello from AI!"
   else:
