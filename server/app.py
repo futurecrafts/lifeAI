@@ -33,7 +33,7 @@ def index():
     if "\n" != prompt[-1]:
       prompt = prompt + "\n"
       
-    #print('1.' + prompt)
+    print('prompt:' + prompt)
     if need_to_reset_context(context):
       context = ""
       context_updated = prompt
@@ -41,7 +41,7 @@ def index():
       context_updated = prompt
     else:
       context_updated = context + "\n"+ prompt
-    #print('2.' + context_updated)
+    print('context_updated:' + context_updated)
     response = openai.Completion.create(
         model="text-davinci-003",
         prompt=[context_updated],
@@ -54,7 +54,7 @@ def index():
     )
     #print('3.' + response.choices[0].text)
     context = "\n".join([context_updated, response.choices[0].text])
-    print('4.' + context)
+    print('context:' + context)
     return jsonify(bot = response.choices[0].text)
 
 if __name__ == "__main__":
